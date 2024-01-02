@@ -46,8 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraSwitchScripts\ChangeCameraPriority.cs" />
+    <Compile Include="Assets\Scripts\SingleInputController.cs" />
     <Compile Include="Assets\Scripts\CameraSwitchScripts\LockPlayerMovement.cs" />
     <Compile Include="Assets\Settings\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\CameraSwitchScripts\SwitchingCameraController.cs" />
     <Compile Include="Assets\Scripts\CameraSwitchScripts\LookAtCameraCheck.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.14f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

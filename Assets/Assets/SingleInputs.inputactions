@@ -1,0 +1,46 @@
+{
+    "name": "SingleInputs",
+    "maps": [
+        {
+            "name": "SingleInputsMap",
+            "id": "1ccbfcf7-adc7-45a8-a062-e541e1cab0c2",
+            "actions": [
+                {
+                    "name": "CameraSwitch",
+                    "type": "Button",
+                    "id": "bd290313-7c79-4e99-a0a5-9909a33b0020",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b2a891f8-f1d5-4e35-939f-a50327f7aa8b",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "CameraSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
