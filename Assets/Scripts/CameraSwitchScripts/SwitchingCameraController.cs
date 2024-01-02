@@ -1,6 +1,6 @@
-using System.ComponentModel;
 using UnityEngine;
 using Cinemachine;
+using StarterAssets;
 
 public class SwitchingCameraController : MonoBehaviour
 {
@@ -8,9 +8,12 @@ public class SwitchingCameraController : MonoBehaviour
     public CinemachineVirtualCamera PlayerCamera; 
     public CinemachineVirtualCamera SelectedCamera;
     public CinemachineVirtualCamera CurrentCamera;
-    private void Awake()
-    {
-        
-    }
+    public FirstPersonController FirstPersonController;
     
+    public void ToggleMovementLock()
+    {
+        //temporary solution until new movement
+        if (SelectedCamera != null || FirstPersonController.isMovementLocked)
+            FirstPersonController.isMovementLocked = !FirstPersonController.isMovementLocked;
+    }
 }

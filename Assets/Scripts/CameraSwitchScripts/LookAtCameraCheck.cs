@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Cinemachine;
 
@@ -11,12 +10,12 @@ public class LookAtCameraCheck : MonoBehaviour
     
     [Header("Cameras")]
     [SerializeField] public Camera _mainCamera; 
-    [SerializeField] private CinemachineVirtualCamera _selectedCamera;
+    
+    private CinemachineVirtualCamera _selectedCamera;
     private void FixedUpdate()
     {
-        Vector3 camForward = _mainCamera.transform.forward;
+        var camForward = _mainCamera.transform.forward;
         RaycastHit hit;
-        
         
         if (Physics.Raycast(_mainCamera.transform.position, camForward, out hit) && hit.collider.CompareTag("Camera"))
         {

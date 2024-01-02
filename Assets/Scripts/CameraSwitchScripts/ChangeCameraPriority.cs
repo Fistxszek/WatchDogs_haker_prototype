@@ -5,33 +5,40 @@ using Cinemachine;
 public class ChangeCameraPriority : MonoBehaviour
 {
     [SerializeField] private SwitchingCameraController _switchingCameraController;
-    [SerializeField] private CinemachineVirtualCamera _currentCamera;
-    [SerializeField] private CinemachineVirtualCamera _selectedCamera;
-    [SerializeField] private CinemachineVirtualCamera _playerCamera;
+    private CinemachineVirtualCamera _currentCamera;
+    private CinemachineVirtualCamera _selectedCamera;
+    private CinemachineVirtualCamera _playerCamera;
 
     private void Awake()
     {
+        _switchingCameraController = gameObject.GetComponent<SwitchingCameraController>();
         _playerCamera = _switchingCameraController.PlayerCamera;
+        _currentCamera = _switchingCameraController.CurrentCamera;
     }
 
     public void ChangePriority()
     {
         _selectedCamera = _switchingCameraController.SelectedCamera;
-        
         if (_selectedCamera != null)
         {
-            _currentCamera = _switchingCameraController.CurrentCamera;
-            
-            _selectedCamera.Priority = 1;
-            _currentCamera.Priority = 0;
+            PrioritySwitch(_selectedCamera, _currentCamera);
 
             _currentCamera = _selectedCamera;
             _selectedCamera = null;
         }
-        else if (_currentCamera != _playerCamera && _currentCamera != null)
+        else if (_currentCamera != _playerCamera)
         {
-            _playerCamera.Priority = 1;
-            _currentCamera.Priority = 0;
+            PrioritySwitch(_playerCamera, _currentCamera);
+            _currentCamera = _playerCamera;
         }
+
+        _switchingCameraController.SelectedCamera = _selectedCamera;
+        _switchingCameraController.CurrentCamera = _currentCamera;
+    }
+
+    private static void PrioritySwitch(CinemachineVirtualCamera camA, CinemachineVirtualCamera camB)
+    {
+        camA.Priority = 1;
+        camB.Priority = 0;
     }
 }

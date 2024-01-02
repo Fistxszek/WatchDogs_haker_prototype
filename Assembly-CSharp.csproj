@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraSwitchScripts\ChangeCameraPriority.cs" />
     <Compile Include="Assets\Scripts\SingleInputController.cs" />
-    <Compile Include="Assets\Scripts\CameraSwitchScripts\LockPlayerMovement.cs" />
     <Compile Include="Assets\Settings\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\CameraSwitchScripts\SwitchingCameraController.cs" />
     <Compile Include="Assets\Scripts\CameraSwitchScripts\LookAtCameraCheck.cs" />
