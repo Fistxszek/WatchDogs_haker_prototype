@@ -12,12 +12,31 @@ public class LookAtCameraCheck : MonoBehaviour
     [SerializeField] public Camera _mainCamera; 
     
     private CinemachineVirtualCamera _selectedCamera;
+    public GameObject SelectedPuzzleTile;
     private void FixedUpdate()
     {
         var camForward = _mainCamera.transform.forward;
         RaycastHit hit;
         
-        if (Physics.Raycast(_mainCamera.transform.position, camForward, out hit) && hit.collider.CompareTag("Camera"))
+        if (Physics.Raycast(_mainCamera.transform.position, camForward, out hit))
+        {
+            CameraTagCheck(hit);
+            PuzzleTileTagCheck(hit);
+        }
+
+        _switchingCameraController.SelectedCamera = _selectedCamera;
+    }
+    
+    private void PuzzleTileTagCheck(RaycastHit hit)
+    {
+        if (hit.collider.CompareTag("PuzzleObject"))
+        {
+            SelectedPuzzleTile = hit.collider.gameObject;
+        }
+    }
+    private void CameraTagCheck(RaycastHit hit)
+    {
+        if (hit.collider.CompareTag("Camera")) 
         {
             if (!_selectedCamera)
             {
@@ -29,7 +48,5 @@ public class LookAtCameraCheck : MonoBehaviour
             if (_selectedCamera)
                 _selectedCamera = null;
         }
-
-        _switchingCameraController.SelectedCamera = _selectedCamera;
     }
 }

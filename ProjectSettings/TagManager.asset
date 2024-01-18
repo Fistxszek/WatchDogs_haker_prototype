@@ -6,6 +6,9 @@ TagManager:
   tags:
   - CinemachineTarget
   - Camera
+  - Tile
+  - PowerSourceTile
+  - PuzzleObject
   layers:
   - Default
   - TransparentFX
@@ -13,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - TileColliders
   - 
   - 
   - 
