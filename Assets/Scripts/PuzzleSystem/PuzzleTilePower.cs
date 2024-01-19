@@ -8,15 +8,15 @@ using VInspector.Libs;
 public class PuzzleTilePower : MonoBehaviour
 {
     [Header("Power")] [SerializeField]
-    public bool IsPowered;
+    [HideInInspector]public bool IsPowered;
     [Space(10),Header("Power")] [SerializeField]
     public PuzzlePowerSource PuzzlePowerSource;
 
-    [SerializeField]private List<PuzzleTilePower> _neighborTiles = new List<PuzzleTilePower>();
+    [HideInInspector]private List<PuzzleTilePower> _neighborTiles = new List<PuzzleTilePower>();
     private PuzzleTileFace _puzzleTileFace;
 
-    [SerializeField] public PuzzleTilePower whoAddedYou;
-    [SerializeField] private float _waitTime;
+    [HideInInspector] public PuzzleTilePower whoAddedYou;
+    private float _waitTime;
 
     //[SerializeField] public UnityEvent<PuzzleTilePower, bool> OnChangeNeighborsToTheList;
 

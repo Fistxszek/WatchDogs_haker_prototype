@@ -8,7 +8,7 @@ public class RotateObject : MonoBehaviour
     private Vector3 _currentRotation;
     private Tween _tween;
     [SerializeField] public UnityEvent OnConntectionReset;
-    [SerializeField] private float _rotationTime;
+    private float _rotationTime;
 
     private void Awake()
     {

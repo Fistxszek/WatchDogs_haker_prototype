@@ -9,6 +9,7 @@ public class PuzzleController : MonoBehaviour
     private GameObject _selectedPuzzleTile;
     [SerializeField] public float PuzzleTileRefreshTime;
     [SerializeField] public float RotationObjectTime;
+    [SerializeField] public bool IsPuzzle3D;
 
     private void Awake()
     {

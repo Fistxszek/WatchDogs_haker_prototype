@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2179147889728715356}
   - component: {fileID: 81849408888882465}
   m_Layer: 0
-  m_Name: PuzzleTile
+  m_Name: PuzzleTileCross
   m_TagString: PuzzleObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 81849408888882465}
         m_TargetAssemblyTypeName: PuzzleTilePower, Assembly-CSharp
-        m_MethodName: ResetPowerOnRotate
+        m_MethodName: ResetPower
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -158,7 +158,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _rotationTime: 0
 --- !u!114 &1054438270871755613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d7cc6a134e54c49ba680234f8327fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 3987682785872227428}
   _linesMaterials:
   - {fileID: 2100000, guid: bd8f542df3b1ab446b4dea7998d6c737, type: 2}
   - {fileID: 2100000, guid: fb93d5b45b626e840b099282221d6e7f, type: 2}
@@ -193,12 +191,7 @@ MonoBehaviour:
   - {fileID: 8790363312564022134}
   - {fileID: 8889159671210287296}
   - {fileID: 8704427874616293620}
-  _easyMode: 1
   _pipeType: 3
-  ColorPipes:
-    m_PersistentCalls:
-      m_Calls: []
-  _choosedPipe: {fileID: 0}
 --- !u!114 &5936706791725438792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 905ce7a2eb9c7224d8b351b9ac542bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _puzzleTileFace: {fileID: 1054438270871755613}
   _isTopConnected: 0
   _isBottomConnected: 0
   _isLeftConnected: 0
@@ -257,9 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPowered: 0
   PuzzlePowerSource: {fileID: 0}
-  _neighborTiles: []
   whoAddedYou: {fileID: 0}
-  _waitTime: 0.5
 --- !u!1 &3991734247715328806
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,17 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PuzzleTileConnectionChecker : MonoBehaviour
 {
-    [Header("Scripts"), SerializeField]
+    [Header("Scripts")]
     private PuzzleTileFace _puzzleTileFace;
     
     [Space(10), Header("Shape")]
-    [SerializeField] public bool _isTopConnected;
-    [SerializeField] public bool _isBottomConnected;
-    [SerializeField] public bool _isLeftConnected;
-    [SerializeField] public bool _isRightConnected;
+    [HideInInspector] public bool _isTopConnected;
+    [HideInInspector] public bool _isBottomConnected;
+    [HideInInspector] public bool _isLeftConnected;
+    [HideInInspector] public bool _isRightConnected;
+
+    private void Awake()
+    {
+        _puzzleTileFace = this.GetComponent<PuzzleTileFace>();
+    }
 
     public void CheckConnection(string objectName, bool state)
     {

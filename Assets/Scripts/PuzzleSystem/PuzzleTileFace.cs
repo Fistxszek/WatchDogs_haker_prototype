@@ -11,10 +11,9 @@ public enum PipeType
     Tee,
     Cross
 }
-[ExecuteAlways]
 public class PuzzleTileFace : MonoBehaviour
 {
-    [Header("Components"), SerializeField]
+    [Header("Components")]
     private Renderer _renderer;
     private MeshRenderer _meshRenderer;
     
@@ -31,7 +30,7 @@ public class PuzzleTileFace : MonoBehaviour
     [Header("Colliders"), SerializeField]
     private GameObject[] _collidersList;
 
-    [Space(10), Header("3D or Easy mode")] [SerializeField]
+    [Space(10), Header("3D or Easy mode")]
     private bool _easyMode;
     
     [Header("Lines Look")]
@@ -41,9 +40,17 @@ public class PuzzleTileFace : MonoBehaviour
     private bool _isConnectedLeft;
     private bool _isConnectedRight;
 
-    [SerializeField] public UnityEvent<bool> ColorPipes;
-    [SerializeField] private SetPipeActive _choosedPipe;
-    
+    private SetPipeActive _choosedPipe;
+
+    private void Awake()
+    {
+        _renderer = this.GetComponent<Renderer>();
+        var puzzleController = FindObjectOfType<PuzzleController>();
+
+        _easyMode = !puzzleController.IsPuzzle3D;
+        SetTileFace();
+    }
+
     public void ActiveMaterial(bool state)
     {
         switch (_easyMode)
@@ -145,7 +152,10 @@ public class PuzzleTileFace : MonoBehaviour
         _isConnectedBottom = bottom;
         _isConnectedLeft = left;
         _isConnectedRight = right;
-
+        
+        if (!_renderer)
+            return;
+        
         if (_easyMode)
         {
             SetVariant(9);
@@ -181,9 +191,5 @@ public class PuzzleTileFace : MonoBehaviour
                 _choosedPipe = _pipesVariants[num].GetComponent<SetPipeActive>();
             }
         }
-    }
-    private void OnValidate()
-    {
-        SetTileFace();
     }
 }

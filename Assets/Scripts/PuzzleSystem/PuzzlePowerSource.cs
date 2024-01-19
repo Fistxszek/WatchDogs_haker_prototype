@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
+using VInspector.Libs;
 
 public class PuzzlePowerSource : MonoBehaviour
 {
     public bool IsSourceConnected;
     [SerializeField] public List<PuzzleTilePower> TilesConnected;
-    [SerializeField] private PuzzleTilePower _tile;
+    [SerializeField] private List<PuzzleTilePower> _tiles = new List<PuzzleTilePower>();
 
     private void AddToList(PuzzleTilePower tile, PuzzleTilePower adder)
     {
@@ -21,10 +22,12 @@ public class PuzzlePowerSource : MonoBehaviour
     }
     private void RemoveFromList(PuzzleTilePower tile, PuzzleTilePower adder)
     {
-        if (TilesConnected.Contains(tile) && tile.whoAddedYou == adder)
+        if (TilesConnected.Contains(tile) && (tile.whoAddedYou == adder || !adder))
         {
             tile.ResetPower();
             tile.whoAddedYou = null;
+            if (!adder)
+                TilesConnected.Remove(tile);
         }
     }
 
@@ -44,7 +47,7 @@ public class PuzzlePowerSource : MonoBehaviour
     {
         if (!other.CompareTag("Tile"))
             return;
-        AddToList(_tile, null);
+       // AddConnectedListToMainList();
     }
 
     private void OnTriggerExit(Collider other)
@@ -56,19 +59,42 @@ public class PuzzlePowerSource : MonoBehaviour
     {
         if (!other.CompareTag("Tile"))
             return;
-        IsSourceConnected = state;
-        _tile = other.GetComponentInParent<PuzzleTilePower>();
+        
+        var tilePuzzleTile = other.GetComponentInParent<PuzzleTilePower>();
         if (state)
-            AddToList(_tile, null);
+        {
+            AddToList(tilePuzzleTile, null);
+            AddToTilesList(tilePuzzleTile);
+            CheckIsSourceConnected();
+        }
         else
         {
-            RemoveFromList(_tile, null);
-            ClearList();
+           RemoveFromList(tilePuzzleTile, null);
+           RemoveFromTilesList(tilePuzzleTile);
+           CheckIsSourceConnected();
         }
     }
 
-    private void ClearList()
+    private void AddToTilesList(PuzzleTilePower tile)
     {
-        TilesConnected.Clear();
+        if (!_tiles.Contains(tile))
+            _tiles.Add(tile);
+    }
+    private void RemoveFromTilesList(PuzzleTilePower tile)
+    {
+        if (_tiles.Contains(tile))
+            _tiles.Remove(tile);
+    }
+    private void AddConnectedListToMainList()
+    {
+        foreach (var item in _tiles)
+        {
+            AddToList(item, null);
+        }
+    }
+
+    private void CheckIsSourceConnected()
+    {
+        IsSourceConnected = _tiles.Count > 0;
     }
 }
