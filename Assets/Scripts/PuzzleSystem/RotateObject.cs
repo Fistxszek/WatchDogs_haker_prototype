@@ -8,9 +8,13 @@ public class RotateObject : MonoBehaviour
     private Vector3 _currentRotation;
     private Tween _tween;
     [SerializeField] public UnityEvent OnConntectionReset;
+    [SerializeField] private float _rotationTime;
 
     private void Awake()
     {
+        var puzzleController = FindObjectOfType<PuzzleController>();
+        
+        _rotationTime = puzzleController.RotationObjectTime;
         _tween = transform.DOMove(transform.position, 0.1f);
     }
 
@@ -39,6 +43,6 @@ public class RotateObject : MonoBehaviour
         var targetRotation = new Vector3(_currentRotation.x, rotation, _currentRotation.z);
         if (_tween.active)
             return;
-        _tween = transform.DORotate(targetRotation, 3f);
+        _tween = transform.DORotate(targetRotation, _rotationTime);
     }
 }

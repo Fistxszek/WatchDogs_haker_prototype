@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PuzzlePowerSource : MonoBehaviour
@@ -60,6 +61,14 @@ public class PuzzlePowerSource : MonoBehaviour
         if (state)
             AddToList(_tile, null);
         else
+        {
             RemoveFromList(_tile, null);
+            ClearList();
+        }
+    }
+
+    private void ClearList()
+    {
+        TilesConnected.Clear();
     }
 }

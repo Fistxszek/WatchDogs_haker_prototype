@@ -48,6 +48,7 @@
     <Compile Include="Assets\Scripts\PuzzleSystem\PuzzleTileConnectionChecker.cs" />
     <Compile Include="Assets\Scripts\CameraSwitchScripts\ChangeCameraPriority.cs" />
     <Compile Include="Assets\Scripts\SingleInputController.cs" />
+    <Compile Include="Assets\Scripts\PuzzleSystem\SetPipeActive.cs" />
     <Compile Include="Assets\Scripts\PuzzleSystem\PuzzleTileColliderTrigger.cs" />
     <Compile Include="Assets\Settings\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\PuzzleSystem\PuzzleController.cs" />

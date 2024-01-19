@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum PipeType
 {
@@ -15,9 +16,13 @@ public class PuzzleTileFace : MonoBehaviour
 {
     [Header("Components"), SerializeField]
     private Renderer _renderer;
+    private MeshRenderer _meshRenderer;
     
-    [Header("Materials")] [SerializeField]
+    [Header("Materials"), SerializeField]
     private Material[] _linesMaterials = new Material[4];
+    [Header("Pipes variants"), SerializeField] 
+    private GameObject[] _pipesVariants;
+    private int _variant;
 
     [SerializeField] private Material[] _activeMaterialsArray;
     private Material _activeMaterial;
@@ -25,6 +30,9 @@ public class PuzzleTileFace : MonoBehaviour
     
     [Header("Colliders"), SerializeField]
     private GameObject[] _collidersList;
+
+    [Space(10), Header("3D or Easy mode")] [SerializeField]
+    private bool _easyMode;
     
     [Header("Lines Look")]
     [SerializeField] private PipeType _pipeType;
@@ -33,14 +41,27 @@ public class PuzzleTileFace : MonoBehaviour
     private bool _isConnectedLeft;
     private bool _isConnectedRight;
 
+    [SerializeField] public UnityEvent<bool> ColorPipes;
+    [SerializeField] private SetPipeActive _choosedPipe;
+    
     public void ActiveMaterial(bool state)
     {
-        if (state)
-            _renderer.material = _activeMaterial;
-        else
-            _renderer.material = _material;
+        switch (_easyMode)
+        {
+            case true: 
+                if (state)
+                    _renderer.material = _activeMaterial;
+                else
+                    _renderer.material = _material;
+                break;
+            case false:
+                _choosedPipe.SetActivePipe(state);
+                break;
+        }
+        
     }
-    public void SetTileFace()
+
+    private void SetTileFace()
     {
         _isConnectedTop = false;
         _isConnectedBottom = false;
@@ -66,28 +87,56 @@ public class PuzzleTileFace : MonoBehaviour
 
     private void SetStraightFace()
     {
-        _material = _linesMaterials[(int)PipeType.Straight];
+        if (_easyMode)
+        {
+            _material = _linesMaterials[(int)PipeType.Straight];
+            _activeMaterial = _activeMaterialsArray[0];
+        }
+        else
+        {
+            _variant = 0;
+        }
         SetFace(true,true,false,false);
-        _activeMaterial = _activeMaterialsArray[0];
     }
 
     private void SetElbowFace()
     {
-        _material = _linesMaterials[(int)PipeType.Elbow];
+        if (_easyMode)
+        {
+            _material = _linesMaterials[(int)PipeType.Elbow];
+            _activeMaterial = _activeMaterialsArray[1];
+        }
+        else
+        {
+           _variant = 1;
+        }
         SetFace(false,true,false,true);
-        _activeMaterial = _activeMaterialsArray[1];
     }
     private void SetTeeFace()
     {
-        _material = _linesMaterials[(int)PipeType.Tee];
+        if (_easyMode)
+        {
+            _material = _linesMaterials[(int)PipeType.Tee];
+            _activeMaterial = _activeMaterialsArray[2];
+        }
+        else
+        {
+            _variant = 2;
+        }
         SetFace(true,true,false,true);
-        _activeMaterial = _activeMaterialsArray[2];
     }
     private void SetCrossFace()
     {
-        _material = _linesMaterials[(int)PipeType.Cross];
+        if (_easyMode)
+        {
+            _material = _linesMaterials[(int)PipeType.Cross];
+            _activeMaterial = _activeMaterialsArray[3];
+        }
+        else
+        {
+            _variant = 3;
+        }
         SetFace(true,true,true,true);
-        _activeMaterial = _activeMaterialsArray[3];
     }
 
     private void SetFace(bool top, bool bottom, bool left, bool right)
@@ -97,7 +146,17 @@ public class PuzzleTileFace : MonoBehaviour
         _isConnectedLeft = left;
         _isConnectedRight = right;
 
-        _renderer.material = _material;
+        if (_easyMode)
+        {
+            SetVariant(9);
+            _renderer.enabled = true;
+            _renderer.material = _material;
+        }
+        else
+        {
+            _renderer.enabled = false;
+            SetVariant(_variant);
+        }
         
         SetColliders(top, bottom, left, right);
     }
@@ -108,6 +167,20 @@ public class PuzzleTileFace : MonoBehaviour
         _collidersList[1].SetActive(bottom);
         _collidersList[2].SetActive(left);
         _collidersList[3].SetActive(right);
+    }
+
+    private void SetVariant(int num)
+    {
+        for (int i = 0; i < _pipesVariants.Length; i++)
+        {
+            if (i != num)
+                _pipesVariants[i].SetActive(false);
+            else
+            {
+                _pipesVariants[num].SetActive(true);
+                _choosedPipe = _pipesVariants[num].GetComponent<SetPipeActive>();
+            }
+        }
     }
     private void OnValidate()
     {

@@ -13,9 +13,6 @@ public class PuzzleTileConnectionChecker : MonoBehaviour
     [SerializeField] public bool _isLeftConnected;
     [SerializeField] public bool _isRightConnected;
 
-    [Header("ActivePipes"), SerializeField]
-    private GameObject[] _activePipes;
-
     public void CheckConnection(string objectName, bool state)
     {
         switch (objectName)

@@ -7,6 +7,8 @@ public class PuzzleController : MonoBehaviour
 {
     [SerializeField]private LookAtCameraCheck _lookAtCameraCheck;
     private GameObject _selectedPuzzleTile;
+    [SerializeField] public float PuzzleTileRefreshTime;
+    [SerializeField] public float RotationObjectTime;
 
     private void Awake()
     {

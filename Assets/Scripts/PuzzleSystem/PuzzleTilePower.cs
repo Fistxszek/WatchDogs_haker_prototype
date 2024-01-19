@@ -22,6 +22,9 @@ public class PuzzleTilePower : MonoBehaviour
 
     private void Awake()
     {
+        var puzzleController = FindObjectOfType<PuzzleController>();
+
+        _waitTime = puzzleController.PuzzleTileRefreshTime;
         _puzzleTileFace = this.GetComponent<PuzzleTileFace>();
         StartCoroutine(Wait());
     }
