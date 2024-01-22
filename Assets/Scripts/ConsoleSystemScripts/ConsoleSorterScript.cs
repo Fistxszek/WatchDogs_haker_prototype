@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.Events;
 
 public class ConsoleSorterScript : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class ConsoleSorterScript : MonoBehaviour
     [SerializeField] private List<GameObject> _textLines;
     [SerializeField] private GameObject _userTextPrefab;
     [SerializeField] private GameObject _consoleTextPrefab;
+    [SerializeField] private UnityEvent OnOpeningMap;
 
     public void SpawnTextLine()
     {
@@ -20,6 +22,11 @@ public class ConsoleSorterScript : MonoBehaviour
         
         SpawnConsoleText(inputTxt);
         
+        ActivateInputField();
+    }
+
+    public void ActivateInputField()
+    {
         _inputField.ActivateInputField();
     }
 
@@ -49,6 +56,14 @@ public class ConsoleSorterScript : MonoBehaviour
             case "fuck you":
                 response = "no, fuck you!";
                 break;
+            case "map":
+                response = "opening map";
+                OpenMap();
+                break;
+            case "open.map":
+                response = "opening map";
+                OpenMap();
+                break;
             default:
                 response = "command not recognized";
                 tmpText.color = Color.red;
@@ -60,9 +75,14 @@ public class ConsoleSorterScript : MonoBehaviour
         
         ControlSpaceOnConsole(consoleTxt);
     }
+
+    private void OpenMap()
+    {
+        OnOpeningMap.Invoke();
+    }
     private void ControlSpaceOnConsole(GameObject txt)
     {
-        if (_textLines.Count <= 13)
+        if (_textLines.Count <= 18)
         {
             _textLines.Add(txt);
         }
