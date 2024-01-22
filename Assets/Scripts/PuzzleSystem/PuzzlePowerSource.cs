@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
-using VInspector.Libs;
-
 public class PuzzlePowerSource : MonoBehaviour
 {
     public bool IsSourceConnected;

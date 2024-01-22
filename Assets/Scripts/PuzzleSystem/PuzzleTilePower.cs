@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using VInspector.Libs;
-
 public class PuzzleTilePower : MonoBehaviour
 {
     [Header("Power")] [SerializeField]

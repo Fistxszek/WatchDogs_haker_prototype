@@ -1,5 +1,6 @@
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Events;
 
 public class LookAtCameraCheck : MonoBehaviour
 {
@@ -26,7 +27,6 @@ public class LookAtCameraCheck : MonoBehaviour
 
         _switchingCameraController.SelectedCamera = _selectedCamera;
     }
-    
     private void PuzzleTileTagCheck(RaycastHit hit)
     {
         if (hit.collider.CompareTag("PuzzleObject"))
@@ -42,11 +42,16 @@ public class LookAtCameraCheck : MonoBehaviour
             {
                 _selectedCamera = hit.transform.GetComponent<CinemachineVirtualCamera>();
             }
+            else
+                _selectedCamera.GetComponentInChildren<ShowInWorldCanvas>().ShowObject();
         }
         else
         {
             if (_selectedCamera)
+            {
+                _selectedCamera.GetComponentInChildren<ShowInWorldCanvas>().HideObject();
                 _selectedCamera = null;
+            }
         }
     }
 }

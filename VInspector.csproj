@@ -53,6 +53,7 @@
     <Compile Include="Assets\Plugins\vInspector\VISerializedDictionaryDrawer.cs" />
     <Compile Include="Assets\Plugins\vInspector\VIMenuItems.cs" />
     <Compile Include="Assets\Plugins\vInspector\VIVariantsDrawer.cs" />
+    <Compile Include="Assets\Plugins\vInspector\VICleanerHeader.cs" />
     <Compile Include="Assets\Plugins\vInspector\VILibs.cs" />
     <Compile Include="Assets\Plugins\vInspector\VIResettablePropDrawer.cs" />
     <Compile Include="Assets\Plugins\vInspector\VInspectorData.cs" />
