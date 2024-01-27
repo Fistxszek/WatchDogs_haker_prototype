@@ -21,8 +21,11 @@ public class ChangeCameraPriority : MonoBehaviour
         _selectedCamera = _switchingCameraController.SelectedCamera;
         if (_selectedCamera != null)
         {
+            var camActive = _selectedCamera.GetComponent<CameraActive>().IsCameraActive;
+            if (!camActive)
+                return;
+            
             PrioritySwitch(_selectedCamera, _currentCamera);
-
             _currentCamera = _selectedCamera;
             _selectedCamera = null;
         }

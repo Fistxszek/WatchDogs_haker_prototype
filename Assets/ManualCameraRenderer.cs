@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class ManualCameraRenderer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int fps;
+    float elapsed;
+    Camera cam;
 
-    // Update is called once per frame
-    void Update()
+    void Start () 
     {
-        
+        cam = GetComponent<Camera>();
+        cam.enabled = false;
+    }
+	
+    void Update () 
+    {
+        elapsed += Time.deltaTime;
+        if (elapsed > 1 / fps) {
+            elapsed = 0;
+            cam.Render();
+        }
     }
 }

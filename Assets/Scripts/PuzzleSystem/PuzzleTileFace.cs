@@ -68,6 +68,7 @@ public class PuzzleTileFace : MonoBehaviour
         
     }
 
+    [ContextMenu("aaa")]
     private void SetTileFace()
     {
         _isConnectedTop = false;

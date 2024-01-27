@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 4183050457987225742}
   - component: {fileID: 4380195341519713045}
   - component: {fileID: 7040788207131531842}
+  - component: {fileID: 6660890691259249979}
   m_Layer: 0
   m_Name: PuzzleTileStraight
   m_TagString: PuzzleObject
@@ -485,6 +486,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _animator: {fileID: 6660890691259249979}
+  _animations: []
 --- !u!114 &4144041073942169045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,6 +580,27 @@ MonoBehaviour:
   IsPowered: 0
   PuzzlePowerSource: {fileID: 0}
   whoAddedYou: {fileID: 0}
+--- !u!95 &6660890691259249979
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817723939489531347}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b0fb6a9f5876c48458cda2b303162e72, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3959269817936767356
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,8 @@ public class LookAtCameraCheck : MonoBehaviour
     
     private CinemachineVirtualCamera _selectedCamera;
     public GameObject SelectedPuzzleTile;
+
+    private ShowInWorldCanvas _selectedShowObject;
     private void FixedUpdate()
     {
         var camForward = _mainCamera.transform.forward;
@@ -33,6 +35,10 @@ public class LookAtCameraCheck : MonoBehaviour
         {
             SelectedPuzzleTile = hit.collider.gameObject;
         }
+        else
+        {
+            SelectedPuzzleTile = null;
+        }
     }
     private void CameraTagCheck(RaycastHit hit)
     {
@@ -43,7 +49,12 @@ public class LookAtCameraCheck : MonoBehaviour
                 _selectedCamera = hit.transform.GetComponent<CinemachineVirtualCamera>();
             }
             else
-                _selectedCamera.GetComponentInChildren<ShowInWorldCanvas>().ShowObject();
+            {
+                if (!_selectedShowObject)
+                    _selectedShowObject = _selectedCamera.GetComponentInChildren<ShowInWorldCanvas>();
+                
+                _selectedShowObject.ShowObject();
+            }
         }
         else
         {
@@ -51,6 +62,7 @@ public class LookAtCameraCheck : MonoBehaviour
             {
                 _selectedCamera.GetComponentInChildren<ShowInWorldCanvas>().HideObject();
                 _selectedCamera = null;
+                _selectedShowObject = null;
             }
         }
     }

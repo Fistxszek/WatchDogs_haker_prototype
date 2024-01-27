@@ -9,6 +9,7 @@ TagManager:
   - Tile
   - PowerSourceTile
   - PuzzleObject
+  - CamTile
   layers:
   - Default
   - TransparentFX

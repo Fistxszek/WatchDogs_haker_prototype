@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class RotateObject : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class RotateObject : MonoBehaviour
     private Tween _tween;
     [SerializeField] public UnityEvent OnConntectionReset;
     private float _rotationTime;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private Animation[] _animations;
 
     private void Awake()
     {
@@ -16,33 +19,17 @@ public class RotateObject : MonoBehaviour
         
         _rotationTime = puzzleController.RotationObjectTime;
         _tween = transform.DOMove(transform.position, 0.1f);
+        _animator.Play("rotate" + Random.Range(1,4).ToString());
     }
 
     public void RotateOnInput()
     {
         OnConntectionReset.Invoke();
-        _currentRotation = transform.eulerAngles;
-        switch (_currentRotation.y)
-        {
-            case >= 0 and < 90:
-                Rotate(90);
-                break;
-            case >= 90 and < 180:
-                Rotate(180);
-                break;
-            case >= 180 and < 270:
-                Rotate(270);
-                break;
-            case >= 270 and < 360:
-                Rotate(0);
-                break;
-        }
-    }
-    private void Rotate(int rotation)
-    {
-        var targetRotation = new Vector3(_currentRotation.x, rotation, _currentRotation.z);
-        if (_tween.active)
+        _currentRotation = transform.rotation.eulerAngles;
+
+        if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
             return;
-        _tween = transform.DORotate(targetRotation, _rotationTime);
+        _animator.SetTrigger("rotate"); 
+        
     }
 }
