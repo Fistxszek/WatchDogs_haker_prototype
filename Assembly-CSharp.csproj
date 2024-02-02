@@ -55,7 +55,9 @@
     <Compile Include="Assets\Scripts\PuzzleSystem\PuzzleTileColliderTrigger.cs" />
     <Compile Include="Assets\Scripts\PuzzleSystem\BrakeTiles.cs" />
     <Compile Include="Assets\Scripts\ConsoleSystemScripts\ConsoleSorterScript.cs" />
+    <Compile Include="Assets\Scripts\SelectedRotate.cs" />
     <Compile Include="Assets\Scripts\CameraSwitchScripts\CameraActive.cs" />
+    <Compile Include="Assets\Scripts\QTEManager.cs" />
     <Compile Include="Assets\Scripts\CursorModeController.cs" />
     <Compile Include="Assets\Scripts\UIElementVariables.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />

@@ -108,6 +108,7 @@
     <Compile Include="Assets\Plugins\Heat - Complete Modern UI\Scripts\Credits\CreditsMentionItem.cs" />
     <Compile Include="Assets\Plugins\Heat - Complete Modern UI\Scripts\UI Elements\SettingsSubElement.cs" />
     <Compile Include="Assets\Plugins\Heat - Complete Modern UI\Scripts\Localization\LocalizedObject.cs" />
+    <Compile Include="Assets\Plugins\QTE\Script\QTEManager.cs" />
     <Compile Include="Assets\Plugins\Heat - Complete Modern UI\Scripts\UI Manager\UIManager.cs" />
     <Compile Include="Assets\Plugins\Heat - Complete Modern UI\Scripts\UI Elements\SliderManagerEditor.cs" />
     <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="Assets\Plugins\Heat - Complete Modern UI\Scripts\Credits\CreditsManager.cs" />
     <Compile Include="Assets\Plugins\Heat - Complete Modern UI\Scripts\UI Manager\UIManagerAudioEditor.cs" />
     <Compile Include="Assets\Plugins\Heat - Complete Modern UI\Scripts\HUD\QuestItem.cs" />
+    <Compile Include="Assets\Plugins\QTE\Script\QTEEvent.cs" />
     <Compile Include="Assets\Plugins\Heat - Complete Modern UI\Scripts\Achievements\AchievementManagerEditor.cs" />
     <Compile Include="Assets\Plugins\Heat - Complete Modern UI\Scripts\Localization\LocalizationTableEditor.cs" />
     <Compile Include="Assets\Plugins\Heat - Complete Modern UI\Scripts\Rendering\GraphicsManagerEditor.cs" />

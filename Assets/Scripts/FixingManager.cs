@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FixingManager : MonoBehaviour
 {
+    [SerializeField] private UnityEvent<GameObject> OnMinigameStart;
+    private GameObject _tileToFix;
     public void Fixing(GameObject tileToFix)
     {
+        _tileToFix = tileToFix;
         Debug.Log(tileToFix.name);
         switch (RandomNumber())
         {
@@ -21,7 +25,7 @@ public class FixingManager : MonoBehaviour
         }
     }
 
-    private void Unlock(GameObject tile)
+    public void Unlock(GameObject tile)
     {
         Debug.Log("unlocked");
         tile.GetComponentInParent<BrokenPuzzle>().enabled = false;
@@ -34,6 +38,7 @@ public class FixingManager : MonoBehaviour
     private void StartMinigame()
     {
         Debug.LogWarning("minigame");
+        OnMinigameStart.Invoke(_tileToFix);
     }
 
     private int RandomNumber()

@@ -24,7 +24,6 @@ public class CameraTile : MonoBehaviour
     {
         if (!other.CompareTag("Tile")) 
             return;
-        Debug.Log(other.name);
         _neighbourTile = other.GetComponentInParent<PuzzleTilePower>();
 
     }
