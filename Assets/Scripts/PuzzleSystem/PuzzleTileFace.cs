@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public enum PipeType
 {
     Straight,
     Elbow,
     Tee,
-    Cross
+    Cross,
+    Broken
 }
 public class PuzzleTileFace : MonoBehaviour
 {
@@ -34,13 +36,17 @@ public class PuzzleTileFace : MonoBehaviour
     private bool _easyMode;
     
     [Header("Lines Look")]
-    [SerializeField] private PipeType _pipeType;
+    [SerializeField] public PipeType PipeTypeEnum;
     private bool _isConnectedTop;
     private bool _isConnectedBottom;
     private bool _isConnectedLeft;
     private bool _isConnectedRight;
 
     private SetPipeActive _choosedPipe;
+
+    [HideInInspector] public bool IsBroken;
+    [SerializeField] public GameObject selectedGameObject;
+    public Sprite UIFaceImage;
 
     private void Awake()
     {
@@ -67,16 +73,15 @@ public class PuzzleTileFace : MonoBehaviour
         }
         
     }
-
-    [ContextMenu("aaa")]
-    private void SetTileFace()
+    
+    public void SetTileFace()
     {
         _isConnectedTop = false;
         _isConnectedBottom = false;
         _isConnectedLeft = false;
         _isConnectedRight = true;
         
-        switch (_pipeType)
+        switch (PipeTypeEnum)
         {
             case PipeType.Straight:
                 SetStraightFace();
@@ -90,9 +95,24 @@ public class PuzzleTileFace : MonoBehaviour
             case PipeType.Cross:
                 SetCrossFace();
                 break;
+            case PipeType.Broken:
+                SetBrokenFace();
+                break;
         }
     }
 
+    private void SetBrokenFace()
+    {
+        if (_easyMode)
+        {
+            _material = _linesMaterials[(int)PipeType.Broken];
+        }
+        else
+        {
+            _variant = 4;
+        }
+        SetFace(false,false,false,false);
+    }
     private void SetStraightFace()
     {
         if (_easyMode)

@@ -12,6 +12,7 @@ public class RotateObject : MonoBehaviour
     private float _rotationTime;
     [SerializeField] private Animator _animator;
     [SerializeField] private Animation[] _animations;
+    public bool IsBroken;
 
     private void Awake()
     {
@@ -24,6 +25,9 @@ public class RotateObject : MonoBehaviour
 
     public void RotateOnInput()
     {
+        if (IsBroken)
+            return;
+        
         OnConntectionReset.Invoke();
         _currentRotation = transform.rotation.eulerAngles;
 

@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class PuzzleController : MonoBehaviour
 {
@@ -10,6 +12,11 @@ public class PuzzleController : MonoBehaviour
     [SerializeField] public float PuzzleTileRefreshTime;
     [SerializeField] public float RotationObjectTime;
     [SerializeField] public bool IsPuzzle3D;
+
+    [SerializeField] private UnityEvent<int> OnSelectedRemove; 
+    [SerializeField] private UnityEvent<string, Sprite> OnSelectedAdd; 
+
+    [SerializeField] public List<GameObject> SelectedList = new List<GameObject>();
 
     private void Awake()
     {
@@ -23,5 +30,38 @@ public class PuzzleController : MonoBehaviour
            return;
        var selectedRotateObject = _selectedPuzzleTile.GetComponent<RotateObject>();
        selectedRotateObject.RotateOnInput();
+    }
+
+    public void OnInputSelectPuzzleToFix()
+    {
+        _selectedPuzzleTile = _lookAtCameraCheck.SelectedPuzzleTile;
+        if (_selectedPuzzleTile == null)
+            return;
+        var selectedTileObject = _selectedPuzzleTile.GetComponent<PuzzleTileFace>().selectedGameObject;
+           
+        if (!selectedTileObject.activeSelf)
+        {
+            var selectedTileFaceScript = selectedTileObject.GetComponentInParent<PuzzleTileFace>();
+            
+            selectedTileObject.name = selectedTileFaceScript.name.ToLower();
+            selectedTileObject.SetActive(true);
+            if (SelectedList.Count >= 3)
+            {
+                SelectedList[0].SetActive(false);
+                SelectedList.Remove(SelectedList[0]);
+                
+                OnSelectedRemove.Invoke(0);
+            }
+            SelectedList.Add(selectedTileObject);
+            OnSelectedAdd.Invoke(selectedTileObject.name, selectedTileFaceScript.UIFaceImage);
+        }
+        else
+        {
+            selectedTileObject.SetActive(false);
+            var index = SelectedList.IndexOf(selectedTileObject);
+            
+            OnSelectedRemove.Invoke(index);
+            SelectedList.Remove(selectedTileObject);
+        }
     }
 }

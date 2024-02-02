@@ -15,6 +15,9 @@ public class ConsoleSorterScript : MonoBehaviour
     [SerializeField] private GameObject _consoleTextPrefab;
     [SerializeField] private UnityEvent OnOpeningMap;
 
+    [SerializeField] private PuzzleController _puzzleController;
+    [SerializeField] private UnityEvent<GameObject> OnFixEvent;
+
     public void SpawnTextLine()
     {
         var inputTxt = _inputField.text;
@@ -65,8 +68,21 @@ public class ConsoleSorterScript : MonoBehaviour
                 OpenMap();
                 break;
             default:
+                
                 response = "command not recognized";
                 tmpText.color = Color.red;
+                if (inputTxt.Contains("fix."))
+                {
+                    foreach (var item in _puzzleController.SelectedList)
+                    {
+                        if (inputTxt == "fix." + item.name.ToLower())
+                        {
+                            tmpText.color = Color.green;
+                            response = "fixing...";
+                            OnFixEvent.Invoke(item);
+                        }
+                    }
+                }
                 break;
         }
 
@@ -75,7 +91,7 @@ public class ConsoleSorterScript : MonoBehaviour
         
         ControlSpaceOnConsole(consoleTxt);
     }
-
+    
     private void OpenMap()
     {
         OnOpeningMap.Invoke();

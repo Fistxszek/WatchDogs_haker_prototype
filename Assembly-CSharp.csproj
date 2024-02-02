@@ -50,15 +50,20 @@
     <Compile Include="Assets\Scripts\ConsoleSystemScripts\ConsoleVisibility.cs" />
     <Compile Include="Assets\Scripts\CameraSwitchScripts\ChangeCameraPriority.cs" />
     <Compile Include="Assets\Scripts\SingleInputController.cs" />
+    <Compile Include="Assets\Scripts\ManualCameraRenderer.cs" />
     <Compile Include="Assets\Scripts\PuzzleSystem\SetPipeActive.cs" />
     <Compile Include="Assets\Scripts\PuzzleSystem\PuzzleTileColliderTrigger.cs" />
+    <Compile Include="Assets\Scripts\PuzzleSystem\BrakeTiles.cs" />
     <Compile Include="Assets\Scripts\ConsoleSystemScripts\ConsoleSorterScript.cs" />
     <Compile Include="Assets\Scripts\CameraSwitchScripts\CameraActive.cs" />
     <Compile Include="Assets\Scripts\CursorModeController.cs" />
+    <Compile Include="Assets\Scripts\UIElementVariables.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Settings\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\PuzzleSystem\CameraTile.cs" />
     <Compile Include="Assets\Scripts\PuzzleSystem\PuzzleController.cs" />
     <Compile Include="Assets\Scripts\CameraSwitchScripts\SwitchingCameraController.cs" />
+    <Compile Include="Assets\Scripts\FixingManager.cs" />
     <Compile Include="Assets\Scripts\CameraSwitchScripts\LookAtCameraCheck.cs" />
     <Compile Include="Assets\Scripts\PuzzleSystem\PuzzleTileFace.cs" />
     <Compile Include="Assets\Scripts\PuzzleSystem\PuzzlePowerSource.cs" />
@@ -66,7 +71,7 @@
     <Compile Include="Assets\Scripts\PuzzleSystem\RotateObject.cs" />
     <Compile Include="Assets\Scripts\CameraSwitchScripts\ShowInWorldCanvas.cs" />
     <Compile Include="Assets\Scripts\CameraSwitchScripts\ImageLookAtPlayerInCamera.cs" />
-    <Compile Include="Assets\ManualCameraRenderer.cs" />
+    <Compile Include="Assets\Scripts\PuzzleSystem\BrokenPuzzle.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.14f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

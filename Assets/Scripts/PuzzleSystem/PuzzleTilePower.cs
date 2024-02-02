@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class PuzzleTilePower : MonoBehaviour
 {
     [Header("Power")] [SerializeField]
-    [HideInInspector]public bool IsPowered;
+    public bool IsPowered;
     [Space(10),Header("Power")] [SerializeField]
     public PuzzlePowerSource PuzzlePowerSource;
 
@@ -90,7 +90,8 @@ public class PuzzleTilePower : MonoBehaviour
     {
         while(true)
         {
-            PowerUp();
+            if(!_puzzleTileFace.IsBroken)
+                PowerUp();
             yield return new WaitForSeconds(_waitTime);
         }
     }
